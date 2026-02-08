@@ -39,14 +39,19 @@ In order to run the application, you need to have next tools installed in your m
 - Maven 3.X
 - Docker engine (For example, Docker version 28.3.3, build 980b856).
 
+Note: If you will use command line to compile, package and run the application, you will have to configure 
+JAVA_HOME and MAVEN_HOME environment variables.
+
 ### Steps to run the application
 
 The steps to execute are next: 
 
-1- Go to project root directory. From command line run next command:
-  ```
-  cd /path/to/project_roor_directory
-  ```
+1- First, you have to clone the repository:
+```bash
+git clone https://github.com/luisrojas17/notifications-library.git
+           
+cd notifications-library
+```
 
 2- Compile and package the application with next command:
   ```
