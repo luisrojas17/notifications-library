@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.acme</groupId>
@@ -19,20 +20,20 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.5.13</version> <!-- Use the latest version -->
+            <version>1.5.18</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version> <!-- Use the latest version from Maven Central -->
+            <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.2</version> <!-- Replace with the latest stable version -->
+            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -43,7 +44,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version> <!-- Use the appropriate version -->
+                <version>3.0.0-M5</version>
                 <configuration>
                     <environmentVariables>
                         <SENDGRID_API_KEY>98f4621e-2688-4af7-b739-a6b2b1cbc1a1</SENDGRID_API_KEY>
@@ -59,9 +60,43 @@
                     </environmentVariables>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- Adds the project's dependencies to the manifest Class-Path -->
+                            <addClasspath>true</addClasspath>
+                            <!-- Specifies a prefix for all classpath entries -->
+                            <classpathPrefix>libs/</classpathPrefix>
+                            <mainClass>com.acme.notifications.ExecNotificationDispatcher</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Output directory must match the classpathPrefix in the jar plugin -->
+                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
-
 
 </project>

@@ -28,32 +28,34 @@ public class ExecNotificationDispatcher {
 
     public static void main(String... args) {
 
-        Scanner scanner = new Scanner(System.in);
-        log.warn("You have to provide one option to simulate sending notifications." +
-                "\n The possible options are:" +
-                "\n\t - dispatch: To dispatch just one notification using SendGridProvider and FarebaseProvider ." +
-                "\n\t - dispatchAll: To dispatch a list of notifications using SendGridProvider, FarebaseProvider and TwilioProvider.");
+        try(Scanner scanner = new Scanner(System.in)) {
+            log.warn("You have to provide one option to simulate sending notifications." +
+                    "\n The possible options are:" +
+                    "\n\t - dispatch: To dispatch just one notification using SendGridProvider and FarebaseProvider ." +
+                    "\n\t - dispatchAll: To dispatch a list of notifications using SendGridProvider, FarebaseProvider and TwilioProvider.");
 
-        String input = scanner.nextLine();
+            String input = scanner.nextLine();
 
-        ExecNotificationDispatcher execNotificationDispatcher =
-                new ExecNotificationDispatcher();
+            ExecNotificationDispatcher execNotificationDispatcher =
+                    new ExecNotificationDispatcher();
 
-        switch (input) {
-            case DISPATCH:
-                // To dispatch just one notification
-                execNotificationDispatcher.dispatch();
-                break;
-            case DISPATCHAll:
-                // To dispatch a list of notifications
-                execNotificationDispatcher.dispatchAll();
-                break;
-            default:
-                log.error("Invalid option, bye!!!");
+            switch (input) {
+                case DISPATCH:
+                    // To dispatch just one notification
+                    execNotificationDispatcher.dispatch();
+                    break;
+                case DISPATCHAll:
+                    // To dispatch a list of notifications
+                    execNotificationDispatcher.dispatchAll();
+                    break;
+                default:
+                    log.error("Invalid option, bye!!!");
+            }
+        } catch (Exception e) {
+            log.error("It was an error.\n", e);
         }
 
-        scanner.close();
-
+        System.exit(0);
     }
 
     public void dispatch() {
