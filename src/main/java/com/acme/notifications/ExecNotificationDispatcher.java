@@ -17,6 +17,11 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * This class is an example to show how to use NotificationDispatcher class.
+ *
+ * @author Jose Luis Rojas Gomez
+ */
 @Slf4j
 public class ExecNotificationDispatcher {
 
@@ -58,6 +63,10 @@ public class ExecNotificationDispatcher {
         System.exit(0);
     }
 
+    /**
+     * This method dispatches a notification using SendGridProvider and FarebaseProvider.
+     * The notification is sent to all channels configured.
+     */
     public void dispatch() {
 
         List<NotificationProvider> providers = List.of(
@@ -76,6 +85,10 @@ public class ExecNotificationDispatcher {
         ).thenAccept(NotificationHelper::printResults).join();
     }
 
+    /**
+     * This method dispatches a list of notifications using SendGridProvider, FarebaseProvider and TwilioProvider.
+     * The notifications are sent to all channels configured.
+     */
     public void dispatchAll() {
 
         List<NotificationProvider> providers = List.of(

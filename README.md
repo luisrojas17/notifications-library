@@ -21,6 +21,13 @@ the notifications can be done synchronously and asynchronously.
 - com.acme.providers.impl.TwilioProvider: This is the implementation of the NotificationProvider interface for Twilio.
 - com.acme.notifications.ExecNotificationDispatcher: This is an example class to show hot to use NotificationDispatcher class.
 
+## How to use it
+
+The implementation rules are next:
+
+- A thread pool executor has to be initialized. See com.acme.notifications.ExecNotificationDispatcher class.
+- At least, one provider have to be initialized. See com.acme.notifications.ExecNotificationDispatcher class.
+- The data connection are configured by environment variables. See pom.xml and dockerfile for more details. 
 
 ## How to run the application
 
@@ -68,6 +75,8 @@ The application will ask you to provide an option to simulate sending notificati
 - dispatch: To send just one notification using the all providers configured. 
   In this case, the providers configured are SendGridProvider and FarebaseProvider.
 - dispatchAll: To dispatch a list of notifications considering the channel notification and providers configured.
+  If there is any notification without channel or provider's channel is not the same as notification's channel,
+  it will be skipped.
   In this case, the providers configured are SendGridProvider, FarebaseProvider and TwilioProvider.
 
 Other util commands:

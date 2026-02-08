@@ -68,7 +68,10 @@ public class NotificationDispatcher {
     }
 
     /**
-     *
+     * To send the notifications to all channels provided.
+     * The channels are defined by provider's channel and notification's channel.
+     * If there is any notification without channel or provider's channel is not the same as notification's channel,
+     * it will be skipped.
      *
      * @param notifications the list of notifications to send.
      *

@@ -20,6 +20,12 @@ public class ConfigurationRules {
         return INSTANCE;
     }
 
+    /**
+     * To check if the thread pool executor was initialized.
+     * If the thread pool executor is null, it throws an exception.
+     *
+     * @param executorService the thread pool executor.
+     */
     public void checkThreadPoolExecutor(final ExecutorService executorService) {
         if (Objects.isNull(executorService)) {
             String errorMessage = "Thread pool executor cannot be null.";
