@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.acme</groupId>
+    <artifactId>notifications-library</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.13</version> <!-- Use the latest version -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version> <!-- Use the latest version from Maven Central -->
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version> <!-- Replace with the latest stable version -->
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version> <!-- Use the appropriate version -->
+                <configuration>
+                    <environmentVariables>
+                        <SENDGRID_API_KEY>98f4621e-2688-4af7-b739-a6b2b1cbc1a1</SENDGRID_API_KEY>
+                        <SENDGRID_ENDPOINT>http://localhost:18080/send/email</SENDGRID_ENDPOINT>
+                        <SENDGRID_PASS>password_example</SENDGRID_PASS>
+                        <SENDGRID_SENDER>sender_example@acme.com</SENDGRID_SENDER>
+                        <SENDGRID_USER>user_example</SENDGRID_USER>
+                        <FIREBASE_ENDPOINT>http://localhost:18080/push</FIREBASE_ENDPOINT>
+                        <FIREBASE_PROJECT_ID>98f4621e-2688-4af7-b739-a6b2b1cbc1a2</FIREBASE_PROJECT_ID>
+                        <TWILIO_AUTH_TOKEN>1f4o9r9bo8qml6d7nqlr3nmpo71i9k3q3coifp72v5hp5k5n2kqc</TWILIO_AUTH_TOKEN>
+                        <TWILIO_ENDPOINT>http://localhost:18080/send/sms</TWILIO_ENDPOINT>
+                        <TWILIO_SID>3qfc0v5plov114n7082vbu68a4</TWILIO_SID>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+</project>
